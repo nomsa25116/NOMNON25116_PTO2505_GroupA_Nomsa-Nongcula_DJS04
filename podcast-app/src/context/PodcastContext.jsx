@@ -88,10 +88,10 @@ export function PodcastProvider({ children, initialPodcasts = [] }) {
 
         switch (sortKey) {
             case "title-asc":
-                data.sort((a, b) => a.title.localCompare(b.title));
+                data.sort((a, b) => a.title.localeCompare(b.title));
                 break;
             case "title-desc":
-                data.sort((a, b) => b.title.localCompare(a.title));
+                data.sort((a, b) => b.title.localeCompare(a.title));
                 break;
             case "date-asc":
                 data.sort((a, b) => new Date(a.updated) - new Date(b.updated));
