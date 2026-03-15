@@ -2,17 +2,17 @@ import { useContext } from "react";
 import { PodcastContext, SORT_OPTIONS } from "../context/PodcastContext";
 
 export default function SortSelect() {
-    const { sortKey, setSortKey } = useContext(PodcastContext);
+    const { sortKey, setSortkey } = useContext(PodcastContext);
 
     return (
         <div className="sort-container">
             <select
                 value={sortKey}
-                onChange={(e) => setSortKey(e.target.value)}
+                onChange={(e) => setSortkey(e.target.value)}
                 className="sort-select"
             >
                 {SORT_OPTIONS.map((option) => (
-                    <option key={option.value} value={option.value}>
+                    <option key={option.key} value={option.key}>
                         {option.label}
                     </option>
                 ))}

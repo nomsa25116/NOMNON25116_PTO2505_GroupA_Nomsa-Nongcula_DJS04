@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { PodcastCard } from './PodcastCard';
+import PodcastCard from './PodcastCard';
 import { PodcastContext } from '../context/PodcastContext';
 
-export default function PodcastGrid( genres) {
+export default function PodcastGrid({ genres }) {
     const { podcasts } = useContext(PodcastContext);
 
     return (

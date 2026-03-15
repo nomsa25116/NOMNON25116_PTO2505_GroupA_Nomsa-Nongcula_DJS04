@@ -67,7 +67,7 @@
   min-width: 150px;
 }
 
-.pagitation-container {
+.pagination-container {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
@@ -99,7 +99,7 @@
   border-color: #007bff;
 }
 
-message-container {
+.message-container {
   text-align: center;
   margin: 2rem 0;
 }
@@ -110,7 +110,7 @@ message-container {
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  animation: spin 1s linear infinite;
+  animation: spin 2s linear infinite;
   margin: auto;
 }
 

@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 import { fetchPodcasts } from "./api/fetchPodcasts";
-import { genres } from "./data";
-import Header from  "./components/Header";
+import { genres } from "../../data";
+import Header from "./components/Header";
+import SearchBar from "./components/SearchBar";
+import GenreFilter from "./components/GenreFilter";
+import SortSelect from "./components/SortSelect";
 import PodcastGrid from "./components/PodcastGrid";
+import Pigination from "./components/Pigination";
+import { PodcastProvider } from "./context/PodcastContext";
 
 export default function App() {
   const [podcasts, setPodcasts] = useState([]);
@@ -16,27 +21,37 @@ export default function App() {
   }, []);
 
   return (
-    <main>
-      <Header />
+    <PodcastProvider initialPodcasts={podcasts}>
+      <main>
+        <Header />
 
-      {loading && (
-        <div className="message-container">
-          <div className="spinner"></div>
-          <p>Loading podcasts...</p>
-        </div>
-      )}
+        {!loading && !error && (
+          <>
+            <div className="controls-container">
+              <SearchBar />
+              <GenreFilter genres={genres} />
+              <SortSelect />
+            </div>
+            <PodcastGrid genres={genres} />
+            <Pigination />
+          </>
+        )}
 
-      {error && (
-        <div className="message-container">
-          <div className="error">
-            Error occurred while trying fetching podcasts: {error}
+        {loading && (
+          <div className="message-container">
+            <div className="spinner"></div>
+            <p>Loading podcasts...</p>
           </div>
-        </div>
-      )}
+        )}
 
-      {!loading && !error && (
-        <PodcastGrid podcasts={podcasts} genres={genres} />
-      )}
-    </main>
+        {error && (
+          <div className="message-container">
+            <div className="error">
+              Error occurred while trying fetching podcasts: {error}
+            </div>
+          </div>
+        )}
+      </main>
+    </PodcastProvider>
   );
 }
